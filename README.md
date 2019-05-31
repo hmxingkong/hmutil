@@ -29,7 +29,9 @@ composer update hmxingkong/hmutil
 
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
-    
+  
+v0.1.1 内容：
+ + 添加日志工具类： hmxingkong\utils\MLog
     
 v0.1.0 内容：
 
