@@ -60,12 +60,12 @@ class MLog
         }
 
         $logDir = $this->logDir . date('Y-m-d') . '/';
-        if (!is_dir($logDir)) {
-            mkdir($logDir, 0755, true);
+        if(!MDir::mkdir($logDir)){
+            return false;
         }
 
         $logPrefix = '[' . date('Y-m-d H:i:s') . ']' . ( empty($this->tag) ? '' : '[' . $this->tag . ']' ) . '[' . $level . ']';
-        @file_put_contents($logDir . $this->logFileName, $logPrefix . ' ' . $logMsg, FILE_APPEND);
+        @file_put_contents($logDir . $this->logFileName, $logPrefix . ' ' . $logMsg . PHP_EOL, FILE_APPEND);
     }
 
 }
