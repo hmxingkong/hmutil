@@ -3,33 +3,67 @@
 
 namespace hmxingkong\utils;
 
-
+/**
+ * Class MDir
+ * @package hmxingkong\utils
+ */
 class MDir
 {
+    /**
+     * 文件类型
+     */
+    const TYPE_FILE = 'FILE';
 
     /**
-     * 获取指定目录下的文件
+     * 文件夹类型
+     */
+    const TYPE_DIR = 'FLODER';
+
+
+    /**
+     * 获取指定目录下的文件（递归）
      * @param $path
      * @param string $pattern
-     * @param bool $includeDir
-     * @return array
+     * @param string $type
+     * @param bool $recursive
+     * @param callable $callback($path, $file, $type, $total, $curIdx)
+     * @return array :指定$callback参数时，返回空数组，否则返回文件列表
      */
-    public static function listFiles($path, $pattern = '*', $includeDir=false)
+    public static function listFiles($path, $pattern = '*', $type=MDir::TYPE_FILE, $recursive=true, callable $callback=null)
     {
         $tFiles = [];
-        $files = glob($path . $pattern, GLOB_MARK);
+        if(!MString::endWith($path, '/'))
+            $path .= '/';
+
+        $files = [];
+        switch($type){
+            case MDir::TYPE_FILE: $files = glob($path . $pattern, GLOB_MARK); break;
+            case MDir::TYPE_DIR: $files = glob($path . $pattern, GLOB_ONLYDIR); break;
+            default: break;
+        }
         if($files === false || empty($files))
             return $tFiles;
+
+        $total = count($files);
+        $curIdx = 0;
         foreach($files as $file){
             if(is_file($file)){
-                $tFiles[] = $file;
-            }
-            else if(is_dir($file)){
-                if($includeDir){
+                if($callback){
+                    $callback($path, $file, MDir::TYPE_FILE, $total, ++$curIdx);
+                }else{
                     $tFiles[] = $file;
                 }
-                $sFiles = MDir::listFiles($file, $pattern, $includeDir);
-                $tFiles = array_merge($tFiles, $sFiles);
+            }
+            else if(is_dir($file)){
+                if($callback){
+                    $callback($file, '', MDir::TYPE_DIR, $total, ++$curIdx);
+                }else{
+                    $tFiles[] = $file;
+                }
+                if($recursive){
+                    $sFiles = MDir::listFiles($path, $pattern, $type, $callback);
+                    $tFiles = array_merge($tFiles, $sFiles);
+                }
             }
         }
         return $tFiles;
@@ -43,9 +77,12 @@ class MDir
      */
     public static function mkdir($pathname, $mode=0755)
     {
-        if (!is_dir($pathname)) {
-            return mkdir($pathname, $mode, true);
+        if(file_exists($pathname)){
+            if(is_dir($pathname)){
+                return true;
+            }
+            return false;
         }
-        return false;
+        return mkdir($pathname, $mode, true);
     }
 }

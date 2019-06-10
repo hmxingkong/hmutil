@@ -30,11 +30,17 @@ composer update hmxingkong/hmutil
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
   
-v0.1.2 内容：
+v0.1.3 更新内容：
++ 文件夹工具类listFiles方法新增回调参数，用于大量文件存在的场景
++ 文件夹工具类listFiles方法新增显示递归参数
++ 文件夹工具类listFiles方法废弃includeDir参数
++ 文件夹工具类mkdir方法返回值调整，当目标文件夹存在时返回true而不是false
+  
+v0.1.2 更新内容：
  + 添加文件夹工具类： hmxingkong\utils\MDir
  + 日志工具类修改，日志内容输出添加换行
   
-v0.1.1 内容：
+v0.1.1 更新内容：
  + 添加日志工具类： hmxingkong\utils\MLog
     
 v0.1.0 内容：
