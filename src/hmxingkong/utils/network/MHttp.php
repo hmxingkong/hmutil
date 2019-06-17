@@ -1,7 +1,7 @@
 <?php
 
 
-namespace hmxingkong\utils;
+namespace hmxingkong\utils\network;
 
 
 /**

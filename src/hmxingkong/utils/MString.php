@@ -30,7 +30,13 @@ class MString
      */
     public static function endWith($str, $pattern)
     {
-        return (strrchr($str, $pattern) == $pattern);
+        //BUG 作用对象为字符，非字符串
+        //return (strrchr($str, $pattern) === $pattern);
+        //substr($file, strrpos($str, $pattern)) === $pattern
+
+        $len = strlen($pattern);
+        if($len == 0) return true;
+        return substr($str, -$len) === $pattern;
     }
 
     /**

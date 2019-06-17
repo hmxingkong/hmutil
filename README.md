@@ -30,11 +30,18 @@ composer update hmxingkong/hmutil
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
   
+v0.2.0 更新内容
+ + 划分包名，将MHttp归类到network包，将MDir归类到file包
+ + 新增工具类MFile，提供文件路径处理方法
+ + 新增工具类MContentType，提供网络资源类型处理
+ + 工具类方法MDir::listFiles修复BUG
+ + 工具类方法MString::startWith修复BUG
+  
 v0.1.3 更新内容：
-+ 文件夹工具类listFiles方法新增回调参数，用于大量文件存在的场景
-+ 文件夹工具类listFiles方法新增显示递归参数
-+ 文件夹工具类listFiles方法废弃includeDir参数
-+ 文件夹工具类mkdir方法返回值调整，当目标文件夹存在时返回true而不是false
+ + 工具类方法MDir::listFiles新增回调参数，用于大量文件存在的场景
+ + 工具类方法MDir::listFiles新增显示递归参数
+ + 工具类方法MDir::listFiles废弃includeDir参数
+ + 工具类方法MDir::mkdir返回值调整，当目标文件夹存在时返回true而不是false
   
 v0.1.2 更新内容：
  + 添加文件夹工具类： hmxingkong\utils\MDir

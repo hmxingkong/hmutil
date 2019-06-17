@@ -1,7 +1,7 @@
 <?php
 
 
-namespace hmxingkong\utils;
+namespace hmxingkong\utils\file;
 
 /**
  * Class MDir
@@ -61,8 +61,12 @@ class MDir
                     $tFiles[] = $file;
                 }
                 if($recursive){
-                    $sFiles = MDir::listFiles($path, $pattern, $type, $callback);
-                    $tFiles = array_merge($tFiles, $sFiles);
+                    $sFiles = MDir::listFiles($file, $pattern, $type, $recursive, $callback);
+                    if($callback){
+                        //IGNORE
+                    }else{
+                        $tFiles = array_merge($tFiles, $sFiles);
+                    }
                 }
             }
         }
