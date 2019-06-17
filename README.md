@@ -30,6 +30,9 @@ composer update hmxingkong/hmutil
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
   
+v0.2.1 更新内容
+ + 修复MString引用BUG
+  
 v0.2.0 更新内容
  + 划分包名，将MHttp归类到network包，将MDir归类到file包
  + 新增工具类MFile，提供文件路径处理方法

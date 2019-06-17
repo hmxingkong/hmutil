@@ -3,6 +3,8 @@
 
 namespace hmxingkong\utils\file;
 
+use hmxingkong\utils\MString;
+
 /**
  * Class MDir
  * @package hmxingkong\utils

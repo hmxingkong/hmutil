@@ -4,6 +4,8 @@
 namespace hmxingkong\utils\network;
 
 
+use hmxingkong\utils\MString;
+
 /**
  * http/https相关工具类
  * Class MHttp

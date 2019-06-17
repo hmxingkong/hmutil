@@ -4,6 +4,8 @@
 namespace hmxingkong\utils\file;
 
 
+use hmxingkong\utils\MString;
+
 class MFile
 {
 
