@@ -3,6 +3,8 @@
 
 namespace hmxingkong\utils;
 
+use hmxingkong\utils\file\MDir;
+
 /**
  * 日志类
  * Class MLog
