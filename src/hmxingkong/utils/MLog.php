@@ -8,7 +8,7 @@ use hmxingkong\utils\file\MDir;
 /**
  * 日志类
  * Class MLog
- * @package hmxingkong\alarm
+ * @package hmxingkong\utils
  */
 class MLog
 {

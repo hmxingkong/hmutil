@@ -5,7 +5,7 @@ namespace hmxingkong\utils\network;
 
 /**
  * Class MContentType
- * @package hmxingkong\utils
+ * @package hmxingkong\utils\network
  */
 class MContentType
 {
@@ -16,7 +16,9 @@ class MContentType
      */
     public static function getContentType($name)
     {
-        if(!empty($name) && array_key_exists($name, self::CONTENT_TYPE)){
+        if(empty($name)) return '';
+        $name = strtolower($name);
+        if(array_key_exists($name, self::CONTENT_TYPE)){
             return self::CONTENT_TYPE[$name];
         }
         return '';
@@ -175,7 +177,7 @@ class MContentType
         '.mp2'	=>	'audio/mp2',
         '.mp2v'	=>	'video/mpeg',
         '.mp3'	=>	'audio/mp3',
-        '.mp4'	=>	'video/mpeg4',
+        '.mp4'	=>	'video/mp4', //video/mpeg4
         '.mpa'	=>	'video/x-mpg',
         '.mpd'	=>	'application/vnd.ms-project',
         '.mpe'	=>	'video/x-mpeg',

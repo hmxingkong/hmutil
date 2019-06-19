@@ -30,6 +30,9 @@ composer update hmxingkong/hmutil
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
     
+v0.2.2 更新内容
+ + 添加工具类MNetFile，提供服务端大文件下载功能
+    
 v0.2.1 更新内容
  + 修复MDir引用BUG
     

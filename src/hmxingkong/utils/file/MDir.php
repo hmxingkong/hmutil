@@ -7,7 +7,7 @@ use hmxingkong\utils\MString;
 
 /**
  * Class MDir
- * @package hmxingkong\utils
+ * @package hmxingkong\utils\file
  */
 class MDir
 {

@@ -9,7 +9,7 @@ use hmxingkong\utils\MString;
 /**
  * http/https相关工具类
  * Class MHttp
- * @package hmxingkong\utils
+ * @package hmxingkong\utils\network
  */
 class MHttp
 {

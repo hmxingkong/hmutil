@@ -17,6 +17,7 @@ class MFile
      */
     public static function getFileName($file, $separator='/')
     {
+        //return basename($file);
         return substr($file, strrpos($file, $separator));
     }
 
