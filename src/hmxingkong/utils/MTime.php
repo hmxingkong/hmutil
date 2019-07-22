@@ -81,4 +81,34 @@ class MTime
         return date($format, $time);
     }
 
+    /**
+     * 格式化指定秒数
+     *   1              fmt=>    00:01
+     *   10             fmt=>    00:10
+     *   60             fmt=>    01:00
+     *   70             fmt=>    01:10
+     *   3600+10        fmt=>    01:00:10
+     *   3600*24+10     fmt=>    01d 00:00:10
+     * @param $time
+     * @return string
+     */
+    public static function formatSeconds($time)
+    {
+        $time = intval($time);
+
+        $d = intval($time / 3600 / 24);
+        $time = $time % (3600 * 24);
+        $h = intval($time / 3600);
+        $time = $time % 3600;
+        $m = intval($time / 60);
+        $time = $time % 60;
+        $s = intval($time % 60);
+
+        $fmtTime = '';
+        if($d > 0 || !empty($fmtTime)){ if($d < 10) $d = '0'.$d; $fmtTime .= $d.'d '; }
+        if($h > 0 || !empty($fmtTime)){ if($h < 10) $h = '0'.$h; $fmtTime .= $h.':'; }
+        if(true/*$m > 0 || !empty($fmtTime)*/){ if($m < 10) $m = '0'.$m; $fmtTime .= $m.':'; }
+        if(true/*$s > 0 || !empty($fmtTime)*/){ if($s < 10) $s = '0'.$s; $fmtTime .= $s.''; }
+        return $fmtTime;
+    }
 }

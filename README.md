@@ -30,6 +30,9 @@ composer update hmxingkong/hmutil
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
     
+v0.2.3 更新内容
+ + 新增工具类方法MTime::formatSeconds，提供对指定秒数格式化的能力
+    
 v0.2.2 更新内容
  + 添加工具类MNetFile，提供服务端大文件下载功能
     
