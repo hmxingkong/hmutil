@@ -16,7 +16,7 @@ class MNetFile
 
     /**
      * @param $fullFilePath
-     * @param string $targetFileName
+     * @param string $targetFileName :注意，如果路径中的文件名包含中文，pathinfo函数无法正确解析，对于Client端的文件名会缺失，为避免此问题请显示指定该参数
      * @return array
      */
     public static function sendFileToClient($fullFilePath, $targetFileName='')
@@ -80,7 +80,7 @@ class MNetFile
         header("Content-type: " . $contentType);
         header("Accept-Ranges: bytes");
         header("Content-Length: " . ($seekEnd - $seekBegin + 1));
-        header("Content-Disposition: filename=" . $targetFileName);
+        header("Content-Disposition: attachment; filename=" . $targetFileName);
         header("Content-Range: bytes " . $seekBegin . "-" . $seekEnd . "/" . $fileSize);
 
         try{
@@ -104,6 +104,8 @@ class MNetFile
                 echo $c;
                 //strlen($c)."/".$length*/
             }
+            ob_flush();
+            flush();
         }catch(\Exception $e){
             $res['info'] .= sprintf("【执行遇到异常 -%s】", $e->getMessage());
             return $res;
