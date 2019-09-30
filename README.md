@@ -30,6 +30,10 @@ composer update hmxingkong/hmutil
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
     
+v0.2.5 更新内容
+ + 工具类MContentType修正.xlsx文件对应的Content-Type(Mime-Type)
+ + 工具类方法MHttp::getPretendArgs定义改为static修饰
+    
 v0.2.4 更新内容
  + 工具类方法MNetFile::sendFileToClient修复浏览器无法识别下载文件名的BUG
     

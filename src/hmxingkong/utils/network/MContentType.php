@@ -360,7 +360,7 @@ class MContentType
         '.xhtml'	=>	'text/html',
         //'.xls'	=>	'application/x-xls',
         '.xls'	=>	'application/vnd.ms-excel',
-        '.xlsx'	=>	'application/vnd.ms-excel',
+        '.xlsx'	=>	'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         '.xlw'	=>	'application/x-xlw',
         '.xml'	=>	'text/xml',
         '.xpl'	=>	'audio/scpls',

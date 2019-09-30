@@ -34,11 +34,11 @@ class MHttp
      * @param bool $randIp
      * @return array
      */
-    public function getPretendArgs($referer='', $userAgent='', $randIp=true)
+    public static function getPretendArgs($referer='', $userAgent='', $randIp=true)
     {
         $curlOptions = [];
         if($referer) $curlOptions[CURLOPT_REFERER] = empty($referer) ? 'https://www.baidu.com/' : $referer;
-        if($randIp) $curlOptions[CURLOPT_HTTPHEADER] = array('X-FORWARDED-FOR:'.$this->randIp(), 'CLIENT-IP:'.$this->randIp());
+        if($randIp) $curlOptions[CURLOPT_HTTPHEADER] = array('X-FORWARDED-FOR:'.self::randIp(), 'CLIENT-IP:'.self::randIp());
         $curlOptions[CURLOPT_USERAGENT] = empty($userAgent) ? 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36' : $userAgent;
         return $curlOptions;
     }
