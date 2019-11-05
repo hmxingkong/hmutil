@@ -51,6 +51,38 @@ class MString
     }
 
     /**
+     * 将给定字符串按字符切割为数组
+     *      "hello，早安！"  =>  ['h','e','l','l','o',',','早','安','!']
+     * @param $str
+     * @return array
+     */
+    public static function str2arr($str){
+        if(empty($str)) return [];
+        return preg_split('/(?<!^)(?!$)/u' , $str);
+    }
+
+    /**
+     * 获取字符串长度，兼容中文
+     * @param $str
+     * @param string $inCharset
+     * @return int
+     */
+    public static function strlen($str, $inCharset='utf-8'){
+        //$inCharset= ini_get("iconv.internal_encoding")
+        if(empty($str)) return 0;
+        if(!in_array(strtolower($inCharset), ['utf8','utf-8'])){
+            $tmpStr = @iconv($inCharset, 'utf-8', $str);
+            if(!empty($tmpStr)){
+                $str = $tmpStr;
+            }
+        }
+        //分割字符串将其转换为数组，计算数组长度
+        //preg_match_all('/./us', $str, $match);
+        //return count($match[0]);
+        return count(self::str2arr($str));
+    }
+
+    /**
      * 随机生成16位字符串
      * @return string 生成的字符串
      */
