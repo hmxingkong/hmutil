@@ -30,6 +30,9 @@ composer update hmxingkong/hmutil
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
     
+v0.3.1 更新内容
+ + 工具类方法MSpelling::getPartsFromSpell、MSpelling::getPartsFromToneName新增三拼音节中的介母识别
+    
 v0.3.0 更新内容
  + 新增工具类MSpelling,提供处理汉语拼音的能力
  + 新增工具类方法MString::strlen，提供计算中英文混合字符串长度的能力

@@ -16,6 +16,7 @@ class MSpelling
 
     /**
      * 拼音转换，数字音调
+     *      bā  =>  ba1
      * @param $spell
      * @return mixed|string
      */
@@ -58,6 +59,7 @@ class MSpelling
 
     /**
      * 拼音转换，书写音调
+     *      ba1  =>  bā
      * @param $toneName
      * @return mixed|string
      */
@@ -101,9 +103,16 @@ class MSpelling
      * 识别声母和韵母
      * @param $spell
      * @return array
+     *      [
+     *          'overall'=>'',   // 整体认读
+     *          'initial'=>'',   // 声母
+     *          'dielectric'=>'',// 介母  针对三拼音节 self::getThreeVowelSyllable
+     *          'vowel'=>'',     // 韵母
+     *          'tone'=>''       // 音调 1~4
+     *      ]
      */
     public static function getPartsFromSpell($spell){
-        $parts = [ 'overall'=>'', 'initial'=>'', 'vowel'=>'', 'tone'=>'' ];
+        $parts = [ 'overall'=>'', 'initial'=>'', 'dielectric'=>'', 'vowel'=>'', 'tone'=>'' ];
         if(empty($spell)) return $parts;
         $toneName = self::getToneNameFromSpell($spell);
         return self::getPartsFromToneName($toneName);
@@ -113,9 +122,16 @@ class MSpelling
      * 识别声母和韵母
      * @param $toneName
      * @return array
+     *      [
+     *          'overall'=>'',   // 整体认读
+     *          'initial'=>'',   // 声母
+     *          'dielectric'=>'',// 介母  针对三拼音节 self::getThreeVowelSyllable
+     *          'vowel'=>'',     // 韵母
+     *          'tone'=>''       // 音调 1~4
+     *      ]
      */
     public static function getPartsFromToneName($toneName){
-        $parts = [ 'overall'=>'', 'initial'=>'', 'vowel'=>'', 'tone'=>'' ];
+        $parts = [ 'overall'=>'', 'initial'=>'', 'dielectric'=>'', 'vowel'=>'', 'tone'=>'' ];
         if(empty($toneName)) return $parts;
         $tGrade = substr($toneName, -1, 1); //音调
         if(is_numeric($tGrade)){
@@ -144,7 +160,17 @@ class MSpelling
             $initial = substr($lToneName, 0, 1); //声母
             $vowel = substr($lToneName, 1, strlen($lToneName)-1); //韵母
         }
+
+        //三拼音节
+        $dielectric = '';
+        $threeVowelSyllable = self::getThreeVowelSyllable();
+        if(in_array($vowel, $threeVowelSyllable)){
+            $dielectric = substr($vowel, 0, 1); //介母
+            $vowel = substr($vowel, 1, strlen($vowel) - 1); //韵母
+        }
+
         $parts['initial'] = $initial;
+        $parts['dielectric'] = $dielectric;
         $parts['vowel'] = $vowel;
         $parts['tone'] = $tGrade;
         return $parts;
