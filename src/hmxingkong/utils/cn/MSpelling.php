@@ -70,6 +70,11 @@ class MSpelling
 
         $tGrade = substr($toneName, -1, 1);
         if(!is_numeric($tGrade)){
+            //包含单字 v
+            if(MString::contains($toneName, $tones[5][0])){
+                return str_replace($tones[5][0], $tones[5][5], $toneName);
+            }
+            //无音调
             return $toneName;
         }
         $toneName = substr($toneName, 0, strlen($toneName)-1);
