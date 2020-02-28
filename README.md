@@ -30,13 +30,16 @@ composer update hmxingkong/hmutil
 
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
-    
+   
+v0.4.1 更新内容
+ + 工具类方法MString::arr2xml修复对多维数组转换时跟节点的兼容
+   
 v0.4.0 更新内容
  + 工具类方法MHttp::doRequest参数列表调整，添加请求参数类型指定 $reqDataType
  + 工具类方法MString::arr2xml添加多维数组兼容
     
 v0.3.2 更新内容
- + 工具类方法MSpelling::getSpellFromToneName修复对的 v & ü 的兼容
+ + 工具类方法MSpelling::getSpellFromToneName修复对 v & ü 的兼容
     
 v0.3.1 更新内容
  + 工具类方法MSpelling::getPartsFromSpell、MSpelling::getPartsFromToneName新增三拼音节中的介母识别

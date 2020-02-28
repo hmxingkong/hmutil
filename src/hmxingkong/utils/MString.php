@@ -100,24 +100,25 @@ class MString
     /**
      * 数组转xml
      * @param $data
+     * @param bool $noRootElement
      * @return string
      */
-    public static function arr2xml($data)
+    public static function arr2xml($data, $noRootElement=false)
     {
         if (!is_array($data) || count($data) <= 0) {
             return '';
         }
-        $xml = "<xml>";
+        $xml = $noRootElement ? "" : "<xml>";
         foreach ($data as $key => $val) {
             if (is_numeric($val)) {
                 $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
             } else if(is_array($val)) {
-                $xml .= "<" . $key . ">" . self::arr2xml($val) . "</" . $key . ">";
+                $xml .= "<" . $key . ">" . self::arr2xml($val, true) . "</" . $key . ">";
             } else {
                 $xml .= "<" . $key . "><![CDATA[" . $val . "]]></" . $key . ">";
             }
         }
-        $xml .= "</xml>";
+        $xml .= $noRootElement ? "" : "</xml>";
         return $xml;
     }
 
