@@ -52,7 +52,8 @@ class MHttp
      * @param array $header
      * @param array $cookie:  Cookie参数
      * @param array $pretendArgs:  伪装参数
-     * @param int $dataType: 返回数据的数据格式  0 不处理  1 Json  2 xml
+     * @param int $reqDataType: 请求数据的数据格式  0 不处理  1 Json  2 xml  3 http_build_query
+     * @param int $respDataType: 返回数据的数据格式  0 不处理  1 Json  2 xml
      * @param int $requestTimeout : 请求超时时间
      * @param int $connectionTimeout : 连接超时时间
      * @param int $isVerifyPeer : 验证证书
@@ -64,7 +65,8 @@ class MHttp
         , $header = []
         , $cookie = []
         , $pretendArgs=[]
-        , $dataType = 0
+        , $reqDataType = 0
+        , $respDataType = 0
         , $requestTimeout = 10
         , $connectionTimeout = 30
         , $isVerifyPeer = 0
@@ -120,11 +122,13 @@ class MHttp
             $curlOptions[CURLOPT_POST] = 1;
             $curlOptions[CURLOPT_URL] = $url;
             if (!empty($reqData)) {
-                //数据的数据格式  0 不处理  1 Json  2 xml
-                switch($dataType){
-                    case 0: $curlOptions[CURLOPT_POSTFIELDS] = http_build_query($reqData); /*把数据urlencode后，注入参数*/ break;
-                    case 1: $curlOptions[CURLOPT_POSTFIELDS] = http_build_query($reqData); /*把数据urlencode后，注入参数*/ break;
-                    case 2: $curlOptions[CURLOPT_POSTFIELDS] = $reqData; break;
+                //请求的数据格式  0 不处理  1 Json  2 xml  3 http_build_query
+                //$curlOptions[CURLOPT_POSTFIELDS] 只接受字符串
+                switch($reqDataType){
+                    case 0: $curlOptions[CURLOPT_POSTFIELDS] = $reqData; break;
+                    case 1: $curlOptions[CURLOPT_POSTFIELDS] = json_encode($reqData, JSON_UNESCAPED_UNICODE); break;
+                    case 2: $curlOptions[CURLOPT_POSTFIELDS] = MString::arr2xml($reqData); break;
+                    case 3: $curlOptions[CURLOPT_POSTFIELDS] = http_build_query($reqData); /*把数据urlencode后，注入参数*/ break;
                     default: break;
                 }
             }
@@ -159,7 +163,7 @@ class MHttp
 
             //数据的数据格式  0 不处理  1 Json  2 xml
             $respData = '';
-            switch($dataType){
+            switch($respDataType){
                 case 0: $respData = $rawData; break;
                 case 1: $respData = json_decode($rawData, true); break;
                 case 2: $respData = MString::xml2arr($rawData, true); break;

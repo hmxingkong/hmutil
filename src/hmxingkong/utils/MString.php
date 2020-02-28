@@ -99,7 +99,6 @@ class MString
 
     /**
      * 数组转xml
-     *     仅支持二维数组
      * @param $data
      * @return string
      */
@@ -112,6 +111,8 @@ class MString
         foreach ($data as $key => $val) {
             if (is_numeric($val)) {
                 $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
+            } else if(is_array($val)) {
+                $xml .= "<" . $key . ">" . self::arr2xml($val) . "</" . $key . ">";
             } else {
                 $xml .= "<" . $key . "><![CDATA[" . $val . "]]></" . $key . ">";
             }
@@ -123,14 +124,14 @@ class MString
     /**
      * 将xml转为array
      * @param $xml
-     * @param bool $isArr
+     * @param bool $returnArr
      * @return mixed
      */
-    public static function xml2arr($xml, $isArr=true)
+    public static function xml2arr($xml, $returnArr=true)
     {
         //禁止引用外部xml实体
         libxml_disable_entity_loader(true);
-        $result = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), $isArr);
+        $result = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), $returnArr);
         return $result;
     }
 

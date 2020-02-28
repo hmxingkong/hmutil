@@ -10,6 +10,7 @@
 ~~~
 composer require hmxingkong/hmutil
 ~~~
+提示： 包名可指定版本号，e.g. hmxingkong/hmutil or hmxingkong/hmutil:0.1.0 or hmxingkong/hmutil=0.1.0 or "hmxingkong/hmutil 0.1.0"
 
 使用工具包
 ~~~
@@ -29,6 +30,10 @@ composer update hmxingkong/hmutil
 
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
+    
+v0.4.0 更新内容
+ + 工具类方法MHttp::doRequest参数列表调整，添加请求参数类型指定 $reqDataType
+ + 工具类方法MString::arr2xml添加多维数组兼容
     
 v0.3.2 更新内容
  + 工具类方法MSpelling::getSpellFromToneName修复对的 v & ü 的兼容
