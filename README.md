@@ -31,6 +31,11 @@ composer update hmxingkong/hmutil
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
    
+   
+v0.4.2 更新内容
+ + 新增工具类方法MFile::createFile，提供方便创建文件的能力
+ + 新增工具类方法MFile::deleteFile，提供方便删除文件的能力
+   
 v0.4.1 更新内容
  + 工具类方法MString::arr2xml修复对多维数组转换时跟节点的兼容
    

@@ -35,4 +35,38 @@ class MFile
         return $suffix;
     }
 
+    /**
+     * 创建文件
+     * @param $fileName
+     * @param string $content
+     * @return bool
+     */
+    public static function createFile($fileName, $content='')
+    {
+        try{
+            $file = fopen($fileName, 'w');
+            if(!empty($content)){
+                fwrite($file, $content);
+            }
+            return true;
+        }finally{
+            if(isset($file) && $file){
+                fclose($file);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 删除文件
+     * @param $fileName
+     * @return bool
+     */
+    public static function deleteFile($fileName)
+    {
+        if(!file_exists($fileName)){
+            return true;
+        }
+        return @unlink($fileName);
+    }
 }
