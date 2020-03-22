@@ -4,10 +4,10 @@
 namespace hmxingkong\utils\crypt\openssl;
 
 /**
- * Class AES
+ * Class MAes
  * @package hmxingkong\utils\crypt\openssl
  */
-class AES
+class MAes
 {
 
     /**

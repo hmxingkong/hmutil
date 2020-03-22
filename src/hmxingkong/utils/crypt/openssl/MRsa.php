@@ -4,10 +4,10 @@
 namespace hmxingkong\utils\crypt\openssl;
 
 /**
- * Class RSA
+ * Class MRsa
  * @package hmxingkong\utils\crypt\openssl
  */
-class RSA
+class MRsa
 {
 
     /**
