@@ -31,6 +31,11 @@ composer update hmxingkong/hmutil
 说明：
     首批工具类命名均以 M 开头，为了避免与原生类冲突，还没研究通过namespace来处理这个问题。
    
+v0.5.1 更新内容
+ + 新增工具类MCode，提供去除给定代码的注释内容的操作
+ + 调整工具类AES命名为MAes
+ + 调整工具类RSA命名为MRsa
+   
 v0.5.0 更新内容
  + 新增工具类AES，提供方便进行AES加/解密的操作
  + 新增工具类RSA，提供方便进行RSA加/解密的操作
